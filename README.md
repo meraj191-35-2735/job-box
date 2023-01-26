@@ -1,6 +1,6 @@
-# Job Box
+# Job Station
 
-Live Site(Coming Soon)
+It's a Job Hunting Web Application (On working)
 
 ## Technology Used:
 
