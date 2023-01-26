@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 const Login = () => {
   const {
@@ -10,103 +11,123 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => console.log(data);
   return (
-    <div className="grid grid-cols-2 gap-5">
-      <div>
-        <h1>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta
-          expedita natus perspiciatis numquam, praesentium obcaecati quaerat
-          omnis ratione ea eos recusandae ex placeat adipisci dolor? Labore
-          officiis suscipit accusantium atque.
-        </h1>
-      </div>
-      <div>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col justify-center items-center "
-        >
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <input
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "Email is Required",
-                },
-                pattern: {
-                  value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                  message: "Provide a Valid Email Address",
-                },
-              })}
-              type="email"
-              placeholder="Your Email"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <label className="label">
-              {errors.email?.type === "required" && (
-                <span className="label-text-alt text-red-600">
-                  {errors.email.message}
-                </span>
-              )}
-              {errors.email?.type === "pattern" && (
-                <span className="label-text-alt text-red-600">
-                  {errors.email.message}
-                </span>
-              )}
-            </label>
+    <>
+      <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 px-10 mt-3">
+        <div className="flex flex-col justify-center items-center bg-gray-100 shadow-sm rounded-md  py-5">
+          <h3 className="font-semibold font-serif">Welcome to</h3>
+          <br />
+          <h1
+            data-aos="flip-right"
+            data-aos-duration="2000"
+            data-aos-easing="linear"
+            className="text-accent font-bold font-mono text-3xl border-b-2 border-accent inline"
+          >
+            Job Station
+          </h1>
+        </div>
+        <div className="bg-gray-100 shadow-xl rounded-md py-5">
+          <div className="flex justify-center items-center">
+            <h1 className="font-bold font-xl text-accent border-b-2 border-accent inline">
+              Log In
+            </h1>
           </div>
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <input
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "Password is Required",
-                },
-                minLength: {
-                  value: 6,
-                  message: "Must be 6 character or more longer",
-                },
-              })}
-              type="password"
-              placeholder="Your Password"
-              className="input input-bordered w-full max-w-xs"
-            />
-            <label className="label">
-              {errors.password?.type === "required" && (
-                <span className="label-text-alt text-red-600">
-                  {errors.password.message}
-                </span>
-              )}
-              {errors.password?.type === "minLength" && (
-                <span className="label-text-alt text-red-600">
-                  {errors.password.message}
-                </span>
-              )}
-            </label>
-          </div>
-          {/* Error  */}
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col justify-center items-center "
+          >
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text font-serif">Email</span>
+              </label>
+              <input
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "Email is Required",
+                  },
+                  pattern: {
+                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                    message: "Provide a Valid Email Address",
+                  },
+                })}
+                type="email"
+                placeholder="Your Email"
+                className="input input-bordered w-full max-w-xs font-serif"
+              />
+              <label className="label">
+                {errors.email?.type === "required" && (
+                  <span className="label-text-alt text-red-600 font-serif">
+                    {errors.email.message}
+                  </span>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <span className="label-text-alt text-red-600 font-serif">
+                    {errors.email.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text font-serif">Password</span>
+              </label>
+              <input
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password is Required",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Must be 6 character or more longer",
+                  },
+                })}
+                type="password"
+                placeholder="Your Password"
+                className="input input-bordered w-full max-w-xs font-serif"
+              />
+              <label className="label">
+                {errors.password?.type === "required" && (
+                  <span className="label-text-alt text-red-600 font-serif ">
+                    {errors.password.message}
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span className="label-text-alt text-red-600 font-serif ">
+                    {errors.password.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            {/* Forgot Password  */}
+            <div className="flex justify-center items-center mb-2">
+              <label htmlFor="forgotPassword" className="mt-0 pt-0">
+                <span className="font-serif">Forgot Password?</span>
+              </label>
+            </div>
+            {/* Error  */}
 
-          {/* Login Button  */}
-          <input
-            className="btn btn-active  w-full max-w-xs"
-            type="submit"
-            value="Login"
-          />
-          <label htmlFor="signup">
-            <p>
-              New to Job Box?{" "}
-              <span>
-                <Link to="/signup">Sign Up</Link>
-              </span>
-            </p>
-          </label>
-        </form>
+            {/* Login Button  */}
+            <input
+              className="btn btn-active  w-full max-w-xs font-serif"
+              type="submit"
+              value="Login"
+            />
+            <label htmlFor="signup">
+              <p className="font-serif my-2">
+                New to Job Box?{" "}
+                <span>
+                  <Link className="font-bold text-accent-focus" to="/signup">
+                    Sign Up
+                  </Link>
+                </span>
+              </p>
+            </label>
+          </form>
+        </div>
       </div>
-    </div>
+      <Footer></Footer>
+    </>
   );
 };
 
