@@ -33,6 +33,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
+              <Link className="font-semibold font-serif" to="/home">
+                Jobs
+              </Link>
+            </li>
+            <li>
               <Link className="font-semibold font-serif" to="/about">
                 About
               </Link>
@@ -60,6 +65,11 @@ const Header = () => {
           <li>
             <Link className="font-semibold font-serif" to="/home">
               Home
+            </Link>
+          </li>
+          <li>
+            <Link className="font-semibold font-serif" to="/home">
+              Jobs
             </Link>
           </li>
 
