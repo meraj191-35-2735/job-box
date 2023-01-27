@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 
 const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
+  const [buttonDis, setButtonDis] = useState(false);
   const {
     register,
     handleSubmit,
@@ -12,11 +13,22 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    if (data.password !== data.passwordConfirm) {
-      setPasswordError("Password doesn't match!");
-    }
-    setPasswordError(" ");
+   
+    console.log(data);
   };
+
+  const handlePassword = () => {
+    const password = document.getElementById("password").value;
+    const passConfirm = document.getElementById("passwordConfirm").value;
+    if (password !== passConfirm) {
+      setPasswordError("Password doesn't match!");
+      setButtonDis(true);
+    } else {
+      setPasswordError("");
+      setButtonDis(false);
+    }
+  };
+
   return (
     <>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 px-10 mt-3">
@@ -81,6 +93,8 @@ const SignUp = () => {
                 <span className="label-tex font-serif">Password</span>
               </label>
               <input
+                name="password"
+                id="password"
                 {...register("password", {
                   required: {
                     value: true,
@@ -113,6 +127,7 @@ const SignUp = () => {
                 <span className="label-text font-serif">Confirm Password</span>
               </label>
               <input
+                id="passwordConfirm"
                 {...register("passwordConfirm", {
                   required: {
                     value: true,
@@ -123,7 +138,9 @@ const SignUp = () => {
                     message: "Must be 6 character or more longer",
                   },
                 })}
+                name="passwordConfirm"
                 type="password"
+                onChange={handlePassword}
                 placeholder="Confirm Password"
                 className="input input-bordered w-full max-w-xs font-serif"
               />
@@ -141,13 +158,22 @@ const SignUp = () => {
               </label>
             </div>
             {/* Error  */}
-            {passwordError && <p>{passwordError}</p>}
+            {passwordError && <p className="font-serif font-thin text-error">{passwordError}</p>}
             {/* Login Button  */}
-            <input
-              className="btn btn-active  w-full max-w-xs font-serif"
-              type="submit"
-              value="Sign Up"
-            />
+            {buttonDis ? (
+              <input
+                className="btn btn-active  w-full max-w-xs font-serif"
+                type="submit"
+                value="Sign Up"
+                disabled
+              />
+            ) : (
+              <input
+                className="btn btn-active  w-full max-w-xs font-serif"
+                type="submit"
+                value="Sign Up"
+              />
+            )}
             <label htmlFor="signup">
               <p className="font-serif my-2">
                 Already have an account?{" "}
