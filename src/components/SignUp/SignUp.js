@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../features/auth/authSlice";
 
 const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
@@ -11,10 +13,12 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-   
-    console.log(data);
+  const onSubmit = ({ email, password }) => {
+    dispatch(createUser({ email, password }));
+    navigate("/");
   };
 
   const handlePassword = () => {
@@ -158,7 +162,9 @@ const SignUp = () => {
               </label>
             </div>
             {/* Error  */}
-            {passwordError && <p className="font-serif font-thin text-error">{passwordError}</p>}
+            {passwordError && (
+              <p className="font-serif font-thin text-error">{passwordError}</p>
+            )}
             {/* Login Button  */}
             {buttonDis ? (
               <input
