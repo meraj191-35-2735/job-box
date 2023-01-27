@@ -32,41 +32,41 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout: (state) => (state.email = ""),
+    logout: (state) => (state.email = " "),
   },
   extraReducers: (builder) => {
     builder
       .addCase(createUser.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
-        state.error = "";
+        state.error = " ";
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.email = action.payload;
         state.isError = false;
-        state.error = "";
+        state.error = " ";
       })
       .addCase(createUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.email = "";
+        state.email = " ";
         state.isError = true;
         state.error = action.error.message;
       })
       .addCase(logInUser.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
-        state.error = "";
+        state.error = " ";
       })
       .addCase(logInUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.email = action.payload;
         state.isError = false;
-        state.error = "";
+        state.error = " ";
       })
       .addCase(logInUser.rejected, (state, action) => {
         state.isLoading = false;
-        state.email = "";
+        state.email = " ";
         state.isError = true;
         state.error = action.error.message;
       });

@@ -10,8 +10,8 @@ const Header = () => {
   const { email } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const handleSignOut = () => {
-    signOut(auth).then(() => dispatch(logout()));
+  const handleSignOut = async () => {
+    await signOut(auth).then(() => dispatch(logout()));
   };
 
   return (
@@ -80,8 +80,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {console.log(email)}
-        {!email ? (
+        {email ? (
           <button
             onClick={handleSignOut}
             className="btn btn-sm font-serif font-semibold"
