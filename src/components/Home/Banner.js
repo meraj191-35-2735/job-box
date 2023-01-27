@@ -3,8 +3,8 @@ import banner from "../../assests/images/banner/banner_jobStation.jpg";
 
 const Banner = () => {
   return (
-    <div>
-      <img src={banner} alt="" />
+    <div className="h-100vh">
+      <img className="max-h-full" src={banner} alt="" />
     </div>
   );
 };
