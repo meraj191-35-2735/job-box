@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { logInUser } from "../../features/auth/authSlice";
+import { googleLogIn, logInUser } from "../../features/auth/authSlice";
 
 const Login = () => {
   const { isLoading, email } = useSelector((state) => state.auth);
@@ -17,6 +17,10 @@ const Login = () => {
 
   const onSubmit = ({ email, password }) => {
     dispatch(logInUser({ email, password }));
+  };
+
+  const handleGoogleLogIn = () => {
+    dispatch(googleLogIn());
   };
 
   useEffect(() => {
@@ -129,8 +133,8 @@ const Login = () => {
               value="Login"
             />
             <label htmlFor="signup">
-              <p className="font-serif my-2">
-                New to Job Box?{" "}
+              <p className="font-serif mb-3">
+                New to Job Station?{" "}
                 <span>
                   <Link className="font-bold text-accent-focus" to="/signup">
                     Sign Up
@@ -138,6 +142,12 @@ const Login = () => {
                 </span>
               </p>
             </label>
+            <input
+              className="btn btn-active  w-full max-w-xs font-serif"
+              type="button"
+              value="Sign in with Google"
+              onClick={handleGoogleLogIn}
+            />
           </form>
         </div>
       </div>

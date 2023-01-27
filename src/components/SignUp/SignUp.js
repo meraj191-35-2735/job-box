@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { useDispatch } from "react-redux";
-import { createUser } from "../../features/auth/authSlice";
+import { createUser, googleLogIn } from "../../features/auth/authSlice";
 
 const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
@@ -31,6 +31,10 @@ const SignUp = () => {
       setPasswordError("");
       setButtonDis(false);
     }
+  };
+
+  const handleGoogleLogIn = () => {
+    dispatch(googleLogIn());
   };
 
   return (
@@ -181,7 +185,7 @@ const SignUp = () => {
               />
             )}
             <label htmlFor="signup">
-              <p className="font-serif my-2">
+              <p className="font-serif mb-2">
                 Already have an account?{" "}
                 <span>
                   <Link className="font-bold text-accent-focus" to="/login">
@@ -190,6 +194,12 @@ const SignUp = () => {
                 </span>
               </p>
             </label>
+            <input
+              className="btn btn-active  w-full max-w-xs font-serif"
+              type="button"
+              value="Sign in with Google"
+              onClick={handleGoogleLogIn}
+            />
           </form>
         </div>
       </div>

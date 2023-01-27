@@ -83,12 +83,15 @@ const Header = () => {
         {email ? (
           <button
             onClick={handleSignOut}
-            className="btn btn-sm font-serif font-semibold"
+            className="btn btn-outline btn-sm font-serif font-semibold"
           >
             Log Out
           </button>
         ) : (
-          <Link to="login" className="btn btn-sm font-serif font-semibold">
+          <Link
+            to="login"
+            className="btn btn-outline btn-sm font-serif font-semibold"
+          >
             Log In
           </Link>
         )}
