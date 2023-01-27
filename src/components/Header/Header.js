@@ -1,8 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assests/images/logo/jobStation.png";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { logout } from "../../features/auth/authSlice";
+import auth from "../../firebase/firebase.config";
 
 const Header = () => {
+  const { email } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    signOut(auth).then(() => dispatch(logout()));
+  };
+
   return (
     <div className="navbar  bg-base-300">
       <div className="navbar-start">
@@ -42,18 +53,6 @@ const Header = () => {
                 About
               </Link>
             </li>
-            {/* <li>
-              <div className="form-control">
-                <label className="label cursor-pointer">
-                  <input
-                    data-toggle-theme="dark"
-                    data-act-class="ACTIVECLASS"
-                    type="checkbox"
-                    className="toggle"
-                  />
-                </label>
-              </div>
-            </li> */}
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -78,24 +77,22 @@ const Header = () => {
               About
             </Link>
           </li>
-          {/* <li>
-            <div className="form-control">
-              <label className="label cursor-pointer">
-                <input
-                  data-toggle-theme="dark"
-                  data-act-class="ACTIVECLASS"
-                  type="checkbox"
-                  className="toggle"
-                />
-              </label>
-            </div>
-          </li> */}
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="login" className="btn btn-sm font-serif font-semibold">
-          Log In
-        </Link>
+        {console.log(email)}
+        {!email ? (
+          <button
+            onClick={handleSignOut}
+            className="btn btn-sm font-serif font-semibold"
+          >
+            Log Out
+          </button>
+        ) : (
+          <Link to="login" className="btn btn-sm font-serif font-semibold">
+            Log In
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { logInUser } from "../../features/auth/authSlice";
 
 const Login = () => {
+  const { isLoading, email } = useSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    dispatch(logInUser({ email: data.email, password: data.password }));
+  };
+
+  useEffect(() => {
+    if (!isLoading && email) {
+      navigate("/");
+    }
+  }, [isLoading, email, navigate]);
+
   return (
     <>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-5 px-10 mt-3">
