@@ -6,6 +6,8 @@ import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
 import UserDashboard from "../components/Dashboard/UserDashboard";
 import RegisterRole from "../components/RegisterRole/RegisterRole";
+import RequireAuth from "../components/RequireAuth/RequireAuth";
+import RegisterUser from "../components/RegisterRole/RegisterUser";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,21 @@ const router = createBrowserRouter([
       },
       {
         path: "registerRole",
-        element: <RegisterRole></RegisterRole>,
+        element: (
+          <RequireAuth>
+            <RegisterRole></RegisterRole>
+          </RequireAuth>
+        ),
       },
+      {
+        path: "register/:role",
+        element: (
+          <RequireAuth>
+            <RegisterUser></RegisterUser>
+          </RequireAuth>
+        ),
+      },
+
       {
         path: "about",
         element: <About></About>,
