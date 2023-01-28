@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 const RegisterUser = () => {
   const { role } = useParams();
   return (
-    <div className="lg:mx-40 mt-5 border-2">
+    <div className="lg:mx-40 mt-5 border-2 border-t-warning-content">
       <Link className="flex items-center text-sm m-2" to="/registerRole">
         <FiArrowLeftCircle></FiArrowLeftCircle>
         <p className="font-serif ml-0.5">Back</p>
