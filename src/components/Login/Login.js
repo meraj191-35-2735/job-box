@@ -4,9 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { googleLogIn, logInUser } from "../../features/auth/authSlice";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
-  const { isLoading, email } = useSelector((state) => state.auth);
+  const { isLoading, email, isError, error } = useSelector(
+    (state) => state.auth
+  );
   const {
     register,
     handleSubmit,
@@ -28,6 +31,12 @@ const Login = () => {
       navigate("/");
     }
   }, [isLoading, email, navigate]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(error);
+    }
+  }, [isError, error]);
 
   return (
     <>

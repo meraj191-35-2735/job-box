@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import auth from "./firebase/firebase.config";
 import { useDispatch } from "react-redux";
 import { setUser } from "./features/auth/authSlice";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
   }, [dispatch]);
   return (
     <div className="px-3 border-t-4 border-accent">
+      <Toaster></Toaster>
       <RouterProvider router={router}></RouterProvider>
     </div>
   );

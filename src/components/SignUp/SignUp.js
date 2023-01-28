@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createUser, googleLogIn } from "../../features/auth/authSlice";
+import { toast } from "react-hot-toast";
 
 const SignUp = () => {
   const [passwordError, setPasswordError] = useState("");
   const [buttonDis, setButtonDis] = useState(false);
+  const { isLoading, isError, error } = useSelector((state) => state.auth);
   const {
     register,
     handleSubmit,
@@ -18,7 +20,9 @@ const SignUp = () => {
 
   const onSubmit = ({ email, password }) => {
     dispatch(createUser({ email, password }));
-    navigate("/");
+    if (!isError && !isLoading) {
+      navigate("/");
+    }
   };
 
   const handlePassword = () => {
@@ -36,6 +40,12 @@ const SignUp = () => {
   const handleGoogleLogIn = () => {
     dispatch(googleLogIn());
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(error);
+    }
+  }, [isError, error]);
 
   return (
     <>
