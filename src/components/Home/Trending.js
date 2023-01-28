@@ -5,13 +5,13 @@ import company3 from "../../assests/images/companyIcon/company3.png";
 
 const Trending = () => {
   return (
-    <div className="mx-12 mt-4 flex h-32 border">
-      <div className="w-2/12 flex justify-center items-center bg-accent">
+    <div className="mx-12 mt-4 flex lg:h-32 border">
+      <div className="lg:w-2/12 w-full flex justify-center items-center bg-accent">
         <h3 className="font-semibold uppercase font-serif text-white">
           Trending Jobs
         </h3>
       </div>
-      <div className="w-10/12 flex items-center">
+      <div className="lg:w-10/12 w-full flex items-center">
         <div
           data-aos="fade-down"
           className="w-1/3 flex justify-center border-r"
