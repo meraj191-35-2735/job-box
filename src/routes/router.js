@@ -4,6 +4,8 @@ import Main from "../layout/Main/Main";
 import About from "../components/About/About";
 import Login from "../components/Login/Login";
 import SignUp from "../components/SignUp/SignUp";
+import UserDashboard from "../components/Dashboard/UserDashboard";
+import RegisterRole from "../components/RegisterRole/RegisterRole";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: "home",
         element: <Home></Home>,
+      },
+      {
+        path: "dashboard",
+        element: <UserDashboard></UserDashboard>,
+      },
+      {
+        path: "registerRole",
+        element: <RegisterRole></RegisterRole>,
       },
       {
         path: "about",

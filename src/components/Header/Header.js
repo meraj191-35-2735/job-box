@@ -7,7 +7,7 @@ import { logout } from "../../features/auth/authSlice";
 import auth from "../../firebase/firebase.config";
 
 const Header = () => {
-  const { email } = useSelector((state) => state.auth);
+  const { email, role } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const handleSignOut = async () => {
@@ -48,6 +48,13 @@ const Header = () => {
                 Jobs
               </Link>
             </li>
+            {email && (
+              <li>
+                <Link className="font-semibold font-serif" to="/dashboard">
+                  Dashboard
+                </Link>
+              </li>
+            )}
             <li>
               <Link className="font-semibold font-serif" to="/about">
                 About
@@ -71,7 +78,20 @@ const Header = () => {
               Jobs
             </Link>
           </li>
-
+          {email && role && (
+            <li>
+              <Link className="font-semibold font-serif" to="/dashboard">
+                Dashboard
+              </Link>
+            </li>
+          )}
+          {email && !role && (
+            <li>
+              <Link className="font-semibold font-serif" to="/registerRole">
+                Register
+              </Link>
+            </li>
+          )}
           <li>
             <Link className="font-semibold font-serif" to="/about">
               About
