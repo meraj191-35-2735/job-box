@@ -8,6 +8,7 @@ import "react-phone-input-2/lib/style.css";
 const RegisterUser = () => {
   const { role } = useParams();
   const [phone, setPhone] = useState("");
+  const [enable, setEnable] = useState("off");
 
   const {
     register,
@@ -19,6 +20,16 @@ const RegisterUser = () => {
     data.phone = phone;
     data.role = role;
     console.log(data);
+  };
+
+  const handleButton = () => {
+    const checkBox = document.getElementById("checkButton");
+    if (checkBox.checked) {
+      checkBox.disabled = false;
+      setEnable(checkBox.value);
+    } else {
+      setEnable("off");
+    }
   };
 
   return (
@@ -196,14 +207,39 @@ const RegisterUser = () => {
               )}
             </label>
           </div>
-          <input type="checkbox" class="default:ring-2" />
+          <div className="flex justify-start items-center">
+            <input
+              onClick={handleButton}
+              id="checkButton"
+              type="checkbox"
+              class="default:ring-2 checkbox-accent"
+            />{" "}
+            <p className="ml-1 font-serif">
+              I agree to all{" "}
+              <a
+                href="https://job-box-redux.web.app/"
+                className="text-blue-700 hover:underline"
+              >
+                terms & condition
+              </a>
+            </p>
+          </div>
           {/* Error  */}
 
-          <input
-            className="btn btn-sm my-2 btn-active max-w-xs font-serif"
-            type="submit"
-            value="Submit"
-          />
+          {enable === "on" ? (
+            <input
+              className="btn btn-sm my-2 btn-active max-w-xs font-serif"
+              type="submit"
+              value="Submit"
+            />
+          ) : (
+            <input
+              className="btn btn-sm my-2 btn-active max-w-xs font-serif"
+              type="submit"
+              value="Submit"
+              disabled
+            />
+          )}
         </form>
       </div>
     </div>
