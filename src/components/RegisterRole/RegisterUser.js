@@ -4,11 +4,13 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import PhoneInput from "react-phone-input-2";
 import { Link, useParams } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
+import { useRegisterMutation } from "../../features/auth/authApi";
 
 const RegisterUser = () => {
-  const { role } = useParams();
+  const { email, role } = useParams();
   const [phone, setPhone] = useState("");
   const [enable, setEnable] = useState("off");
+  const [postUser, { isLoading, isError }] = useRegisterMutation();
 
   const {
     register,
@@ -17,8 +19,10 @@ const RegisterUser = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    data.email = email;
     data.phone = phone;
     data.role = role;
+    postUser({ ...data });
     console.log(data);
   };
 
