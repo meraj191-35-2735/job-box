@@ -1,6 +1,5 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router";
-import "./App.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
