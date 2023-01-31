@@ -23,7 +23,6 @@ const RegisterUser = () => {
     data.phone = phone;
     data.role = role;
     postUser({ ...data });
-    console.log(data);
   };
 
   const handleButton = () => {
